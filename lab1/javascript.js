@@ -1,83 +1,82 @@
-function triangle(val1, type1, val2, type2) {
+function triangle(value1, type1, value2, type2) {
     const validTypes = ["leg", "hypotenuse", "adjacent angle", "opposite angle", "angle"];
     
     if (!validTypes.includes(type1) || !validTypes.includes(type2)) {
-        console.log("Invalid types. Please check the instructions and try again.");
+        console.log("Некоректні типи. Перевірте інструкцію та спробуйте ще раз.");
         return "failed";
     }
 
-    if (val1 <= 0 || val2 <= 0) {
-        console.log("Values must be positive numbers.");
+    if (value1 <= 0 || value2 <= 0) {
+        console.log("Значення повинні бути додатні числа.");
         return "failed";
     }
 
     let hypotenuse, angleA, angleB, sideA, sideB;
 
     if (type1 === "leg" && type2 === "hypotenuse") {
-        sideA = val1;
-        hypotenuse = val2;
-        sideB = Math.sqrt(hypotenuse ** 2 - val1 ** 2);
-        angleA = Math.atan(val1 / sideB) * (180 / Math.PI);
+        sideA = value1;
+        hypotenuse = value2;
+        sideB = Math.sqrt(value2 ** 2 - value1 ** 2);
+        angleA = Math.atan(value1 / sideB) * (180 / Math.PI);
         angleB = 90 - angleA;
     } else if (type1 === "hypotenuse" && type2 === "leg") {
-        hypotenuse = val1;
-        sideA = val2;
-        sideB = Math.sqrt(hypotenuse ** 2 - val2 ** 2);
-        angleA = Math.atan(val2 / sideB) * (180 / Math.PI);
+        hypotenuse = value1;
+        sideA = value2;
+        sideB = Math.sqrt(value1 ** 2 - value2 ** 2);
+        angleA = Math.atan(value2 / sideB) * (180 / Math.PI);
         angleB = 90 - angleA;
     } else if (type1 === "leg" && type2 === "adjacent angle") {
-        sideA = val1;
-        angleA = val2;
-        angleB = 90 - val2;
-        sideB = sideA / Math.tan(val2 * (Math.PI / 180));
-        hypotenuse = sideA / Math.sin(val2 * (Math.PI / 180));
+        sideA = value1;
+        angleA = value2;
+        angleB = 90 - value2;
+        sideB = sideA / Math.tan(value2 * (Math.PI / 180));
+        hypotenuse = sideA / Math.sin(value2 * (Math.PI / 180));
     } else if (type1 === "adjacent angle" && type2 === "leg") {
-        angleA = val1;
-        sideA = val2;
-        angleB = 90 - val1;
-        sideB = sideA / Math.tan(val1 * (Math.PI / 180));
-        hypotenuse = sideA / Math.sin(val1 * (Math.PI / 180));
+        angleA = value1;
+        sideA = value2;
+        angleB = 90 - value1;
+        sideB = sideA / Math.tan(value1 * (Math.PI / 180));
+        hypotenuse = sideA / Math.sin(value1 * (Math.PI / 180));
     } else if (type1 === "leg" && type2 === "angle") {
-        sideA = val1;
-        angleA = val2;
-        angleB = 90 - val2;
-        sideB = sideA / Math.tan(val2 * (Math.PI / 180));
-        hypotenuse = sideA / Math.sin(val2 * (Math.PI / 180));
+        sideA = value1;
+        angleA = value2;
+        angleB = 90 - value2;
+        sideB = sideA / Math.tan(value2 * (Math.PI / 180));
+        hypotenuse = sideA / Math.sin(value2 * (Math.PI / 180));
     } else if (type1 === "angle" && type2 === "leg") {
-        angleA = val1;
-        sideA = val2;
-        angleB = 90 - val1;
-        sideB = sideA / Math.tan(val1 * (Math.PI / 180));
-        hypotenuse = sideA / Math.sin(val1 * (Math.PI / 180));
+        angleA = value1;
+        sideA = value2;
+        angleB = 90 - value1;
+        sideB = sideA / Math.tan(value1 * (Math.PI / 180));
+        hypotenuse = sideA / Math.sin(value1 * (Math.PI / 180));
     } else if (type1 === "leg" && type2 === "opposite angle") {
-        sideA = val1;
-        angleB = val2;
-        angleA = 90 - val2;
-        sideB = sideA / Math.tan(val2 * (Math.PI / 180));
-        hypotenuse = sideA / Math.sin(val2 * (Math.PI / 180));
+        sideA = value1;
+        angleB = value2;
+        angleA = 90 - value2;
+        sideB = sideA / Math.tan(value2 * (Math.PI / 180));
+        hypotenuse = sideA / Math.sin(value2 * (Math.PI / 180));
     } else if (type1 === "opposite angle" && type2 === "leg") {
-        angleB = val1;
-        sideA = val2;
-        angleA = 90 - val1;
-        sideB = sideA / Math.tan(val1 * (Math.PI / 180));
-        hypotenuse = sideA / Math.sin(val1 * (Math.PI / 180));
+        angleB = value1;
+        sideA = value2;
+        angleA = 90 - value1;
+        sideB = sideA / Math.tan(value1 * (Math.PI / 180));
+        hypotenuse = sideA / Math.sin(value1 * (Math.PI / 180));
     } else {
-        console.log("Invalid combination of types. Please check the instructions and try again.");
+        console.log("Некоректна комбінація типів. Перевірте інструкцію та спробуйте ще раз.");
         return "failed";
     }
 
     if (angleA >= 90 || angleB >= 90) {
-        console.log("Invalid triangle: one of the acute angles is not acute.");
+        console.log("Некоректний трикутник: один з гострих кутів не є гострим.");
         return "failed";
     }
 
-    console.log(`Triangle sides: a = ${sideA}, b = ${sideB}, c = ${hypotenuse}`);
-    console.log(`Acute angles: alpha = ${angleA.toFixed(2)}°, beta = ${angleB.toFixed(2)}°`);
+    console.log(`Сторони трикутника: a = ${sideA}, b = ${sideB}, c = ${hypotenuse}`);
+    console.log(`Гострі кути: alpha = ${angleA.toFixed(2)}°, beta = ${angleB.toFixed(2)}°`);
 
     return "success";
 }
 
-// Example function calls
 triangle(4, "leg", 8, "hypotenuse");
 triangle(8, "hypotenuse", 4, "leg");
 triangle(3, "leg", 5, "hypotenuse");
