@@ -31,18 +31,19 @@ function triangle(value1, type1, value2, type2) {
         sideB = Math.sqrt(value1 ** 2 - value2 ** 2);
         angleA = Math.atan(value2 / sideB) * (180 / Math.PI);
         angleB = 90 - angleA;
-    } else if (type1 === "leg" && type2 === "adjacent angle") {
-        sideA = value1;
-        angleA = value2;
-        angleB = 90 - value2;
-        sideB = sideA / Math.tan(value2 * (Math.PI / 180));
-        hypotenuse = sideA / Math.sin(value2 * (Math.PI / 180));
-    } else if (type1 === "adjacent angle" && type2 === "leg") {
-        angleA = value1;
-        sideA = value2;
-        angleB = 90 - value1;
-        sideB = sideA / Math.tan(value1 * (Math.PI / 180));
-        hypotenuse = sideA / Math.sin(value1 * (Math.PI / 180));
+    } else if ((type1 === "leg" || type1 === "adjacent angle") && (type2 === "leg" || type2 === "adjacent angle")) {
+        // Обчислення для комбінацій з прилеглим кутом
+        console.log('тутвщ')
+        if (type1 === "leg") {
+            sideA = value1;
+            angleA = value2;
+        } else {
+            angleA = value1;
+            sideA = value2;
+        }
+        angleB = 90 - angleA;
+        sideB = sideA / Math.tan(angleB * (Math.PI / 180));
+        hypotenuse = sideA / Math.sin(angleB * (Math.PI / 180));
     } else if (type1 === "leg" && type2 === "angle") {
         sideA = value1;
         angleA = value2;
@@ -67,6 +68,18 @@ function triangle(value1, type1, value2, type2) {
         angleA = 90 - value1;
         sideB = sideA / Math.tan(value1 * (Math.PI / 180));
         hypotenuse = sideA / Math.sin(value1 * (Math.PI / 180));
+    } else if (type1 === "hypotenuse" && type2 === "angle") {
+        hypotenuse = value1;
+        angleA = value2;
+        angleB = 90 - value2;
+        sideA = hypotenuse * Math.sin(angleA * (Math.PI / 180));
+        sideB = Math.sqrt(hypotenuse ** 2 - sideA ** 2);
+    } else if (type1 === "angle" && type2 === "hypotenuse") {
+        angleA = value1;
+        hypotenuse = value2;
+        angleB = 90 - value1;
+        sideA = hypotenuse * Math.sin(angleA * (Math.PI / 180));
+        sideB = Math.sqrt(hypotenuse ** 2 - sideA ** 2);
     } else {
         console.log("Некоректна комбінація типів. Перевірте інструкцію та спробуйте ще раз.");
         return "failed";
@@ -77,7 +90,7 @@ function triangle(value1, type1, value2, type2) {
         return "failed";
     }
 
-    if (hypotenuse >= sideA || hypotenuse >= sideB) {
+    if (hypotenuse <= sideA || hypotenuse <= sideB) {
         console.log("Некоректний трикутник: гіпотенуза повинна бути меншою за катети.");
         return "failed";
     }
@@ -98,3 +111,5 @@ triangle(40, "angle", 30, "adjacent angle");
 triangle(30, "opposite angle", 4, "leg");
 triangle(4, "leg", 30, "opposite angle");
 triangle(3, "leg", 4, "leg");
+triangle(5, "hypotenuse", 30, "angle");
+triangle(60, "angle", 5, "hypotenuse");
