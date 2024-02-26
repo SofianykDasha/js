@@ -13,7 +13,13 @@ function triangle(value1, type1, value2, type2) {
 
     let hypotenuse, angleA, angleB, sideA, sideB;
 
-    if (type1 === "leg" && type2 === "hypotenuse") {
+    if (type1 === "leg" && type2 === "leg") {
+        sideA = value1;
+        sideB = value2;
+        hypotenuse = Math.sqrt(value1 ** 2 + value2 ** 2);
+        angleA = Math.atan(value1 / value2) * (180 / Math.PI);
+        angleB = 90 - angleA;
+    } else if (type1 === "leg" && type2 === "hypotenuse") {
         sideA = value1;
         hypotenuse = value2;
         sideB = Math.sqrt(value2 ** 2 - value1 ** 2);
@@ -71,6 +77,11 @@ function triangle(value1, type1, value2, type2) {
         return "failed";
     }
 
+    if (hypotenuse >= sideA || hypotenuse >= sideB) {
+        console.log("Некоректний трикутник: гіпотенуза повинна бути меншою за катети.");
+        return "failed";
+    }
+
     console.log(`Сторони трикутника: a = ${sideA}, b = ${sideB}, c = ${hypotenuse}`);
     console.log(`Гострі кути: alpha = ${angleA.toFixed(2)}°, beta = ${angleB.toFixed(2)}°`);
 
@@ -86,3 +97,4 @@ triangle(30, "adjacent angle", 40, "angle");
 triangle(40, "angle", 30, "adjacent angle");
 triangle(30, "opposite angle", 4, "leg");
 triangle(4, "leg", 30, "opposite angle");
+triangle(3, "leg", 4, "leg");
