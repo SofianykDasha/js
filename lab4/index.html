@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Library Demo</title>
+</head>
+<body>
+    <script src="script.js"></script>
+    <script>
+        // Генеруємо масив з 100 цілих чисел
+        let array = [];
+        for (let i = 0; i < 100; i++) {
+            array.push(Math.floor(Math.random() * 1000));
+        }
+
+        // Демонстрація роботи всіх функцій на нерозрідженому масиві
+        console.log("Original array:", array);
+        console.log("Exchange sort (ascending):", SortingLibrary.exchangeSort([...array]));
+        console.log("Selection sort (descending):", SortingLibrary.selectionSort([...array], 'desc'));
+        console.log("Insertion sort (ascending):", SortingLibrary.insertionSort([...array]));
+        console.log("Shell sort (descending):", SortingLibrary.shellSort([...array], 'desc'));
+        console.log("Quick sort (ascending):", SortingLibrary.quickSort([...array]));
+
+        // Генеруємо розріджений масив з 100 цілих чисел з деякими undefined-елементами
+        let sparseArray = [];
+        for (let i = 0; i < 100; i++) {
+            if (i % 2 === 0) {
+                sparseArray[i] = Math.floor(Math.random() * 1000);
+            }
+        }
+
+        console.log("\nSparse array with undefined elements:", sparseArray);
+        console.log("Exchange sort (ascending):", SortingLibrary.exchangeSort([...sparseArray]));
+        console.log("Selection sort (descending):", SortingLibrary.selectionSort([...sparseArray], 'desc'));
+        console.log("Insertion sort (ascending):", SortingLibrary.insertionSort([...sparseArray]));
+        console.log("Shell sort (descending):", SortingLibrary.shellSort([...sparseArray], 'desc'));
+        console.log("Quick sort (ascending):", SortingLibrary.quickSort([...sparseArray]));
+    </script>
+</body>
+</html>
