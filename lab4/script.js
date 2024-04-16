@@ -85,19 +85,19 @@ const SortingLibrary = {
         for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
             for (let i = gap; i < n; i++) {
                 let temp = arr[i];
-                let j;
+                let j = i;
     
-                for (j = i; j >= gap && ((arr[j - gap] === undefined || (arr[j - gap] > temp && sortOrder === 'asc') || (arr[j - gap] < temp && sortOrder === 'desc'))); j -= gap) {
+                while (j >= gap && (arr[j - gap] === undefined || (arr[j - gap] > temp && sortOrder === 'asc') || (arr[j - gap] < temp && sortOrder === 'desc'))) {
                     if (arr[j - gap] !== undefined) {
                         arr[j] = arr[j - gap];
                         swaps++;
                     }
                     comparisons++;
+                    j -= gap;
                 }
-                if (arr[j - gap] !== undefined) {
-                    arr[j] = temp;
-                    comparisons++;
-                }
+    
+                arr[j] = temp;
+                comparisons++;
             }
         }
     
