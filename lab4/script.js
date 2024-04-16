@@ -94,9 +94,10 @@ const SortingLibrary = {
                     }
                     comparisons++;
                 }
-    
-                arr[j] = temp;
-                comparisons++;
+                if (arr[j - gap] !== undefined) {
+                    arr[j] = temp;
+                    comparisons++;
+                }
             }
         }
     
