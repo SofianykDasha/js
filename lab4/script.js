@@ -81,25 +81,23 @@ const SortingLibrary = {
         let comparisons = 0;
         let swaps = 0;
         const n = arr.length;
-
+    
         for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
             for (let i = gap; i < n; i++) {
                 let temp = arr[i];
                 let j;
-
-                for (j = i; j >= gap && ((arr[j - gap] > temp && sortOrder === 'asc') || (arr[j - gap] < temp && sortOrder === 'desc')); j -= gap) {
-                    if (arr[i] !== undefined && arr[j] !== undefined) {
-                        arr[j] = arr[j - gap];
-                        swaps++;
-                        comparisons++;
-                    }
+    
+                for (j = i; j >= gap && ((arr[j - gap] !== undefined && arr[j - gap] > temp && sortOrder === 'asc') || (arr[j - gap] !== undefined && arr[j - gap] < temp && sortOrder === 'desc')); j -= gap) {
+                    arr[j] = arr[j - gap];
+                    swaps++;
+                    comparisons++;
                 }
-
+    
                 arr[j] = temp;
                 comparisons++;
             }
         }
-
+    
         console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
         return arr;
     },
