@@ -63,10 +63,8 @@ const SortingLibrary = {
             let current = arr[i];
             let j = i - 1;
             while (j >= 0 && ((arr[j] === undefined) || (arr[j] !== undefined && ((arr[j] > current && sortOrder === 'asc') || (arr[j] < current && sortOrder === 'desc'))))) {
-                if (arr[j] !== undefined) {
-                    arr[j + 1] = arr[j];
-                    swaps++;
-                }
+                arr[j + 1] = arr[j];
+                swaps++;
                 comparisons++;
                 j--;
             }
