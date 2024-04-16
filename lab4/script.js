@@ -82,16 +82,21 @@ const SortingLibrary = {
         let swaps = 0;
         const n = arr.length;
     
+        // Компаратор, який ігнорує undefined значення
+        const customComparator = (a, b) => {
+            if (a === undefined) return sortOrder === 'asc' ? 1 : -1;
+            if (b === undefined) return sortOrder === 'asc' ? -1 : 1;
+            return sortOrder === 'asc' ? a - b : b - a;
+        };
+    
         for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
             for (let i = gap; i < n; i++) {
                 let temp = arr[i];
                 let j = i;
     
-                while (j >= gap && (arr[j - gap] !== undefined || (arr[j - gap] > temp && sortOrder === 'asc') || (arr[j - gap] < temp && sortOrder === 'desc'))) {
-                    if (arr[j - gap] !== undefined) {
-                        arr[j] = arr[j - gap];
-                        swaps++;
-                    }
+                while (j >= gap && customComparator(arr[j - gap], temp) > 0) {
+                    arr[j] = arr[j - gap];
+                    swaps++;
                     comparisons++;
                     j -= gap;
                 }
