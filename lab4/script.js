@@ -34,11 +34,13 @@ const SortingLibrary = {
 
         for (let i = 0; i < arr.length - 1; i++) {
             let minIndex = i;
-            for (let j = i + 1; j < arr.length; j++) {
-                if ((arr[j] < arr[minIndex] && sortOrder === 'asc') || (arr[j] > arr[minIndex] && sortOrder === 'desc')) {
-                    minIndex = j;
+            for (let j = i + 1; j < arr.length; j++) 
+                if (arr[i] !== undefined && arr[j] !== undefined) {
+                    if ((arr[j] < arr[minIndex] && sortOrder === 'asc') || (arr[j] > arr[minIndex] && sortOrder === 'desc')) {
+                        minIndex = j;
+                    }
+                    comparisons++;
                 }
-                comparisons++;
             }
             if (i !== minIndex) {
                 let temp = arr[i];
