@@ -87,7 +87,7 @@ const SortingLibrary = {
                 let temp = arr[i];
                 let j = i;
     
-                while (j >= gap && (arr[j - gap] === undefined || (arr[j - gap] > temp && sortOrder === 'asc') || (arr[j - gap] < temp && sortOrder === 'desc'))) {
+                while (j >= gap && (arr[j - gap] !== undefined || (arr[j - gap] > temp && sortOrder === 'asc') || (arr[j - gap] < temp && sortOrder === 'desc'))) {
                     if (arr[j - gap] !== undefined) {
                         arr[j] = arr[j - gap];
                         swaps++;
