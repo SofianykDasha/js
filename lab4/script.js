@@ -154,8 +154,19 @@ const SortingLibrary = {
             }
         };
     
-        quickSortRecursive(arr, 0, arr.length - 1);
+        // Розділити масив на дві частини: значення та undefined
+        let pivotIndex = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] !== undefined) {
+                let temp = arr[pivotIndex];
+                arr[pivotIndex] = arr[i];
+                arr[i] = temp;
+                pivotIndex++;
+            }
+        }
+    
+        // Сортувати лише частину масиву зі значеннями
+        quickSortRecursive(arr, 0, pivotIndex - 1);
         return arr;
     }
-
 };
