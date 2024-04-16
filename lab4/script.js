@@ -90,7 +90,7 @@ const SortingLibrary = {
             }
           }
     
-        console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
+        //console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
         return arr;
     },
 
