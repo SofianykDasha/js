@@ -112,66 +112,50 @@ const SortingLibrary = {
 
     // Метод швидкого сортування (Хоара)
     quickSort: function(arr, sortOrder = 'asc') {
-        let comparisons = 0;
-        let swaps = 0;
-
         const partition = (arr, low, high) => {
             let pivot = arr[Math.floor((low + high) / 2)];
             let i = low;
             let j = high;
-        
+    
             while (i <= j) {
                 if (sortOrder === 'asc') {
-                    while (arr[i] === undefined || arr[i] < pivot) {
+                    while (arr[i] !== undefined && arr[i] < pivot) {
                         i++;
-                        comparisons++;
                     }
-                    while (arr[j] === undefined || arr[j] > pivot) {
+                    while (arr[j] !== undefined && arr[j] > pivot) {
                         j--;
-                        comparisons++;
                     }
                 } else {
-                    while (arr[i] === undefined || arr[i] > pivot) {
+                    while (arr[i] !== undefined && arr[i] > pivot) {
                         i++;
-                        comparisons++;
                     }
-                    while (arr[j] === undefined || arr[j] < pivot) {
+                    while (arr[j] !== undefined && arr[j] < pivot) {
                         j--;
-                        comparisons++;
                     }
                 }
-        
+    
                 if (i <= j) {
                     let temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
-                    swaps++;
                     i++;
                     j--;
                 }
             }
-        
+    
             return i;
         };
-
-
-
+    
         const quickSortRecursive = (arr, low, high) => {
-            if (arr.length > 1) {
+            if (low < high) {
                 let index = partition(arr, low, high);
-
-                if (low < index - 1) {
-                    quickSortRecursive(arr, low, index - 1);
-                }
-                if (index < high) {
-                    quickSortRecursive(arr, index, high);
-                }
+                quickSortRecursive(arr, low, index - 1);
+                quickSortRecursive(arr, index, high);
             }
         };
-
+    
         quickSortRecursive(arr, 0, arr.length - 1);
-
-        console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
         return arr;
-    }
+    };
+
 };
