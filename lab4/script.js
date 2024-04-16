@@ -156,6 +156,6 @@ const SortingLibrary = {
     
         quickSortRecursive(arr, 0, arr.length - 1);
         return arr;
-    };
+    }
 
 };
