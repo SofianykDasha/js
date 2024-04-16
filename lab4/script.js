@@ -119,28 +119,28 @@ const SortingLibrary = {
             let pivot = arr[Math.floor((low + high) / 2)];
             let i = low;
             let j = high;
-
+        
             while (i <= j) {
                 if (sortOrder === 'asc') {
-                    while (arr[i] < pivot) {
+                    while (arr[i] !== undefined && arr[i] < pivot) {
                         i++;
                         comparisons++;
                     }
-                    while (arr[j] > pivot) {
+                    while (arr[j] !== undefined && arr[j] > pivot) {
                         j--;
                         comparisons++;
                     }
                 } else {
-                    while (arr[i] > pivot) {
+                    while (arr[i] !== undefined && arr[i] > pivot) {
                         i++;
                         comparisons++;
                     }
-                    while (arr[j] < pivot) {
+                    while (arr[j] !== undefined && arr[j] < pivot) {
                         j--;
                         comparisons++;
                     }
                 }
-
+        
                 if (i <= j) {
                     let temp = arr[i];
                     arr[i] = arr[j];
@@ -150,9 +150,10 @@ const SortingLibrary = {
                     j--;
                 }
             }
-
+        
             return i;
         };
+
 
         const quickSortRecursive = (arr, low, high) => {
             if (arr.length > 1) {
