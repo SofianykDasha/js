@@ -82,7 +82,6 @@ const SortingLibrary = {
         let swaps = 0;
         const n = arr.length;
     
-        // Компаратор, який ігнорує undefined значення
         const customComparator = (a, b) => {
             if (a === undefined) return sortOrder === 'asc' ? 1 : -1;
             if (b === undefined) return sortOrder === 'asc' ? -1 : 1;
@@ -154,7 +153,6 @@ const SortingLibrary = {
             }
         };
     
-        // Розділити масив на дві частини: значення та undefined
         let pivotIndex = 0;
         for (let i = 0; i < arr.length; i++) {
             if (arr[i] !== undefined) {
@@ -164,8 +162,7 @@ const SortingLibrary = {
                 pivotIndex++;
             }
         }
-    
-        // Сортувати лише частину масиву зі значеннями
+
         quickSortRecursive(arr, 0, pivotIndex - 1);
         return arr;
     }
