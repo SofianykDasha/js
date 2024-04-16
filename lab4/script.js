@@ -68,7 +68,7 @@ const SortingLibrary = {
             comparisons++;
         }
 
-        // console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
+        console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
         return arr;
     },
 
@@ -94,7 +94,7 @@ const SortingLibrary = {
             }
         }
 
-        // console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
+        console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
         return arr;
     },
 
