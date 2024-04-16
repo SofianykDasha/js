@@ -80,7 +80,7 @@ const SortingLibrary = {
     shellSort: function(arr, sortOrder = 'asc') {
         for (let interval = arr.length / 2; interval > 0; interval /= 2) {
             //Sort the element using insertion sort in each cycle.
-            for (let i = interval; i < n; i += 1) {
+            for (let i = interval; i < arr.length; i += 1) {
               let temp = arr[i];
               let j;
               for (j = i; j >= interval && arr[j - interval] > temp; j -= interval) {
