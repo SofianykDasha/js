@@ -62,16 +62,16 @@ const SortingLibrary = {
         for (let i = 1; i < arr.length; i++) {
             let current = arr[i];
             let j = i - 1;
-            if (arr[i] !== undefined && arr[j] !== undefined) {
-                while (j >= 0 && ((arr[j] > current && sortOrder === 'asc') || (arr[j] < current && sortOrder === 'desc'))) {
+            while (j >= 0 && ((arr[j] > current && sortOrder === 'asc') || (arr[j] < current && sortOrder === 'desc'))) {
+                if (arr[i] !== undefined && arr[j] !== undefined) {
                     arr[j + 1] = arr[j];
                     j--;
                     swaps++;
                     comparisons++;
                 }
-                arr[j + 1] = current;
-                comparisons++;
             }
+            arr[j + 1] = current;
+            comparisons++;
         }
 
         console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
@@ -90,9 +90,11 @@ const SortingLibrary = {
                 let j;
 
                 for (j = i; j >= gap && ((arr[j - gap] > temp && sortOrder === 'asc') || (arr[j - gap] < temp && sortOrder === 'desc')); j -= gap) {
-                    arr[j] = arr[j - gap];
-                    swaps++;
-                    comparisons++;
+                    if (arr[i] !== undefined && arr[j] !== undefined) {
+                        arr[j] = arr[j - gap];
+                        swaps++;
+                        comparisons++;
+                    }
                 }
 
                 arr[j] = temp;
