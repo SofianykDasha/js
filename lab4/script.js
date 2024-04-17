@@ -111,6 +111,9 @@ const SortingLibrary = {
 
     // Метод швидкого сортування (Хоара)
     quickSort: function(arr, sortOrder = 'asc') {
+        let comparisons = 0;
+        let swaps = 0;
+    
         const partition = (arr, low, high) => {
             let pivot = arr[Math.floor((low + high) / 2)];
             let i = low;
@@ -120,16 +123,20 @@ const SortingLibrary = {
                 if (sortOrder === 'asc') {
                     while (arr[i] !== undefined && arr[i] < pivot) {
                         i++;
+                        comparisons++;
                     }
                     while (arr[j] !== undefined && arr[j] > pivot) {
                         j--;
+                        comparisons++;
                     }
                 } else {
                     while (arr[i] !== undefined && arr[i] > pivot) {
                         i++;
+                        comparisons++;
                     }
                     while (arr[j] !== undefined && arr[j] < pivot) {
                         j--;
+                        comparisons++;
                     }
                 }
     
@@ -139,6 +146,7 @@ const SortingLibrary = {
                     arr[j] = temp;
                     i++;
                     j--;
+                    swaps++;
                 }
             }
     
@@ -162,8 +170,10 @@ const SortingLibrary = {
                 pivotIndex++;
             }
         }
-
+    
         quickSortRecursive(arr, 0, pivotIndex - 1);
+    
+        console.log(`Comparisons: ${comparisons}, Swaps: ${swaps}`);
         return arr;
     }
 };
