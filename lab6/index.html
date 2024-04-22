@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights Out Game</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(5, 50px);
+        grid-template-rows: repeat(5, 50px);
+        gap: 2px;
+      }
+      .cell {
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        border: 1px solid #000;
+        cursor: pointer;
+      }
+      .cell.on {
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="board">
+      <div class="cell" data-row="0" data-col="0"></div>
+      <div class="cell" data-row="0" data-col="1"></div>
+      <div class="cell" data-row="0" data-col="2"></div>
+      <div class="cell" data-row="0" data-col="3"></div>
+      <div class="cell" data-row="0" data-col="4"></div>
+      <div class="cell" data-row="1" data-col="0"></div>
+      <div class="cell" data-row="1" data-col="1"></div>
+      <div class="cell" data-row="1" data-col="2"></div>
+      <div class="cell" data-row="1" data-col="3"></div>
+      <div class="cell" data-row="1" data-col="4"></div>
+      <div class="cell" data-row="2" data-col="0"></div>
+      <div class="cell" data-row="2" data-col="1"></div>
+      <div class="cell" data-row="2" data-col="2"></div>
+      <div class="cell" data-row="2" data-col="3"></div>
+      <div class="cell" data-row="2" data-col="4"></div>
+      <div class="cell" data-row="3" data-col="0"></div>
+      <div class="cell" data-row="3" data-col="1"></div>
+      <div class="cell" data-row="3" data-col="2"></div>
+      <div class="cell" data-row="3" data-col="3"></div>
+      <div class="cell" data-row="3" data-col="4"></div>
+      <div class="cell" data-row="4" data-col="0"></div>
+      <div class="cell" data-row="4" data-col="1"></div>
+      <div class="cell" data-row="4" data-col="2"></div>
+      <div class="cell" data-row="4" data-col="3"></div>
+      <div class="cell" data-row="4" data-col="4"></div>
+  </div>
+    <div>
+      Goal: <div id="goal"></div>
+      Steps: <div id="steps">0</div>
+      Timer: <div id="time">00:00</div>
+    </div>
+    <button onclick="initializeBoardFromAPI()">New Game</button>
+
+    <script src="lights_out.js"></script>
+  </body>
+</html>
