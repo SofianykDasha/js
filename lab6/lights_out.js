@@ -11,7 +11,7 @@ let isNewGame = false;
 
 async function initializeBoardFromAPI() {
   try {
-    const response = await fetch('http://localhost:3000/lights');
+    const response = await fetch('https://sofianykdasha.github.io/js/var1.json');
     const data = await response.json();
     let schema;
     if(varSchema == 1) {
