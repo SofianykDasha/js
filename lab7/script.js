@@ -3,13 +3,13 @@ function loadCatalog() {
       .then(response => response.json())
       .then(data => {
           let categories = '';
-          data.forEach(category => {
+          data.catalog.forEach(category => {
               categories += `<a href="#" onclick="loadCategory('${category.shortname}')">${category.name}</a><br>`;
           });
           
           let specialCategoryIndex = Math.floor(Math.random() * 3) + 0;
           console.log(specialCategoryIndex);
-          categories += `<a href="#" onclick="loadCategory('${data[specialCategoryIndex].shortname}', '${data[specialCategoryIndex].name}')">Specials</a><br>`;
+          categories += `<a href="#" onclick="loadCategory('${data.catalog[specialCategoryIndex].shortname}', '${data.catalog[specialCategoryIndex].name}')">Specials</a><br>`;
           document.getElementById('menu').innerHTML = categories;
       });
 }
