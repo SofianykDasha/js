@@ -1,5 +1,5 @@
 function loadCatalog() {
-  fetch('http://localhost:3000/catalog')
+  fetch('https://sofianykdasha.github.io/js/catalog.json')
       .then(response => response.json())
       .then(data => {
           let categories = '';
@@ -15,7 +15,7 @@ function loadCatalog() {
 }
 
 function loadCategory(shortname, name) {
-  fetch(`http://localhost:3000/${shortname}`)
+  fetch(`https://sofianykdasha.github.io/js/${shortname}.json`)
       .then(response => response.json())
       .then(data => {
           let categoryContent = `<h3>${data.name}</h3>`;
