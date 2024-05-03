@@ -3,6 +3,8 @@ let score = 0;
 let timerId;
 let randomX = Math.floor(Math.random() * 18);
 let randomY = Math.floor(Math.random() * 10);
+let elapsedTimeInSeconds = 0; // змінна для відстеження пройденого часу в секундах
+let remainingTimeInSeconds = Math.floor((level/1000) % 60); 
 
 console.log(startButton);
 // Add a click event listener to the start button
@@ -26,19 +28,34 @@ startButton.addEventListener('click', () => {
     min = 18;
   }
 
+  let remainingTimeInSeconds = Math.floor((level/1000) % 60); 
+
   function startTimer() {
-    timerId = setTimeout(() => {
-      showGameOverMessage();
-    }, level);
-  }
+    timerId = setInterval(() => {
+        remainingTimeInSeconds--; 
+        updateTimerDisplay();
+        if (remainingTimeInSeconds === 0) {
+            clearInterval(timerId);
+            showGameOverMessage();
+        }
+      }, level);
+    }
 
   function resetTimer() {
-    clearTimeout(timerId);
+    clearInterval(timerId);
+    remainingTimeInSeconds = Math.floor((level/1000) % 60);
+    updateTimerDisplay();
     startTimer();
   }
 
+  function updateTimerDisplay() {
+    const seconds = remainingTimeInSeconds.toString();
+    const timeString = ${seconds};
+    scoreLabel.textContent = Score: ${score} time left for click: ${timeString};
+  }
+
   function showGameOverMessage() {
-    alert(`Game over! Your score: ${score}. Congratulation!`);
+    alert(Game over! Your score: ${score}. Congratulation!);
     window.location.reload();
   }
 
@@ -46,12 +63,13 @@ startButton.addEventListener('click', () => {
     body.removeChild(body.firstChild);
   }
 
-  body.style.width = `${window.innerWidth}px`;
-  body.style.height = `${window.innerHeight}px`;
+  body.style.width = ${window.innerWidth}px;
+  body.style.height = ${window.innerHeight}px;
   body.style.backgroundColor = 'white';
 
   const scoreLabel = document.createElement('p');
-  scoreLabel.textContent = `Score: ${score} time left for click: ${level} milliseconds`;
+  sec = Math.floor((level/1000) % 60);
+  scoreLabel.textContent = Score: ${score} time left for click: ${sec};
   scoreLabel.style.position = 'absolute';
   scoreLabel.style.top = '10px';
   scoreLabel.style.left = '10px';
@@ -66,18 +84,18 @@ startButton.addEventListener('click', () => {
   for (let i = 0; i < 18; i++) {
     for (let j = 0; j < 10; j++) {
       const square = document.createElement('div');
-      square.style.width = `${squareSize}px`;
-      square.style.height = `${squareSize}px`;
+      square.style.width = ${squareSize}px;
+      square.style.height = ${squareSize}px;
       square.style.position = 'absolute';
-      square.id = `${i}x${j}`;
-      // square.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
-      square.style.left = `${i * squareSize}px`;
-      square.style.top = `${j * squareSize}px`;
+      square.id = ${i}x${j};
+      // square.style.backgroundColor = #${Math.floor(Math.random()*16777215).toString(16)};
+      square.style.left = ${i * squareSize}px;
+      square.style.top = ${j * squareSize}px;
       square.addEventListener('click', () => {
         if (square.style.backgroundColor == color) {
           square.style.backgroundColor = 'white';
           score++;
-          scoreLabel.textContent = `Score: ${score} time left for click: ${level} milliseconds`;
+          scoreLabel.textContent = Score: ${score} time left for click: ${level} milliseconds;
           resetTimer();
           paintRandomSquare();
         }
@@ -97,8 +115,8 @@ startButton.addEventListener('click', () => {
     randomX = Math.floor(Math.random() * (maxLimitX - lowLimitX)) + lowLimitX;
     randomY = Math.floor(Math.random() * (maxLimitY - lowLimitY)) + lowLimitY;
 
-    console.log(`${randomX}x${randomY}`);
-    const randomSquare = document.getElementById(`${randomX}x${randomY}`);
+    console.log(${randomX}x${randomY});
+    const randomSquare = document.getElementById(${randomX}x${randomY});
     randomSquare.style.backgroundColor = color;
   }
 
