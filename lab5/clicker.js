@@ -74,14 +74,11 @@ startButton.addEventListener('click', () => {
   scoreLabel.style.position = 'absolute';
   scoreLabel.style.top = '10px';
   scoreLabel.style.left = '10px';
-  scoreLabel.style.color = 'black'; // Set text color to white for better visibility
+  scoreLabel.style.color = 'black'; 
   body.appendChild(scoreLabel);
-  // Set the background color of the body to a random color
-
-  // Calculate the width and height of each square
+  
   const squareSize = Math.min(window.innerWidth, window.innerHeight) / 10;
   
-  // Create the squares and add them to the body
   for (let i = 0; i < 18; i++) {
     for (let j = 0; j < 10; j++) {
       const square = document.createElement('div');
@@ -89,7 +86,6 @@ startButton.addEventListener('click', () => {
       square.style.height = `${squareSize}px`;
       square.style.position = 'absolute';
       square.id = `${i}x${j}`;
-      // square.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
       square.style.left = `${i * squareSize}px`;
       square.style.top = `${j * squareSize}px`;
       square.addEventListener('click', () => {
