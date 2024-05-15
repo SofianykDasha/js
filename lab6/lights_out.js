@@ -8,13 +8,14 @@ let elapsedTimeInSeconds = 0;
 var steps = document.getElementById('steps');
 const timeElement = document.getElementById('time');
 let isNewGame = false;
+let schema;
 
 async function initializeBoardFromAPI() {
   try {
     const response = await fetch('https://sofianykdasha.github.io/js/var1.json');
     const response_json = await response.json();
     const data = response_json.lights
-    let schema;
+    
     if(varSchema == 1) {
       schema = data.first.schema;
       dataGoal = data.first.min_steps_to_win;
