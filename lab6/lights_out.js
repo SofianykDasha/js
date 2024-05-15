@@ -28,43 +28,50 @@ async function initializeBoardFromAPI() {
       dataGoal = data.third.min_steps_to_win;
       varSchema = 1;
     }
-
-    for (let i = 0; i < gridSize; i++) {
-      for (let j = 0; j < gridSize; j++) {
-        const cell = document.querySelector(`.cell[data-row='${i}'][data-col='${j}']`);
-
-        if (schema[i][j] == 1) {
-          cell.classList.add('on');
-        } else {
-          cell.classList.remove('on');
-        }
-
-        if (!isNewGame) {
-          cell.addEventListener('click', function (e) {
-            const row = parseInt(this.dataset.row);
-            const col = parseInt(this.dataset.col);
-            
-            steps.textContent = parseInt(steps.textContent) + 1;
-            toggleLight(i, j);
-            checkWin();
-          });
-        } else {
-          steps.textContent = 0;
-        }
-      }
-    }
-
-    const goal = document.getElementById('goal');
-    goal.textContent = dataGoal;
-
-    const timeElement = document.getElementById('time');
-    timeElement.textContent = '00:00';
-    elapsedTimeInSeconds = 0;
-    isNewGame = true;
+   resetGameBySchema();
+   resetStatistics();
   } catch (error) {
     console.error('Error fetching data from API:', error);
   }
-} 
+}
+
+function resetStatistics() {
+  const goal = document.getElementById('goal');
+  goal.textContent = dataGoal;
+
+  const timeElement = document.getElementById('time');
+  timeElement.textContent = '00:00';
+  elapsedTimeInSeconds = 0;
+  isNewGame = true;
+}
+
+function resetGameBySchema() {
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      const cell = document.querySelector(`.cell[data-row='${i}'][data-col='${j}']`);
+
+      if (schema[i][j] == 1) {
+        cell.classList.add('on');
+      } else {
+        cell.classList.remove('on');
+      }
+      if (!isNewGame) {
+        cell.addEventListener('click', function (e) {
+          const row = parseInt(this.dataset.row);
+          const col = parseInt(this.dataset.col);
+          
+          steps.textContent = parseInt(steps.textContent) + 1;
+          toggleLight(i, j);
+          checkWin();
+        });
+      } else {
+        steps.textContent = 0;  
+      }
+
+      resetStatistics();
+    }
+  }
+}
 
 function toggleLight(row, col) {
   toggleAdjacentLight(row, col);
