@@ -9,9 +9,14 @@ function loadCatalog() {
           
           let specialCategoryIndex = Math.floor(Math.random() * 3) + 0;
           console.log(specialCategoryIndex);
-          categories += `<a href="#" onclick="loadCategory('${data.catalog[specialCategoryIndex].shortname}', '${data.catalog[specialCategoryIndex].name}')">Specials</a><br>`;
+          categories += `<a href="#" onclick="loadSpecials('${data.catalog[specialCategoryIndex].shortname}', '${data.catalog[specialCategoryIndex].name}')">Specials</a><br>`;
           document.getElementById('menu').innerHTML = categories;
       });
+}
+
+function loadSpecials(shortname, name) {
+    loadCatalog();
+    loadCategory(shortname, name);
 }
 
 function loadCategory(shortname, name) {
