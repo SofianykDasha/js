@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="menu-icon" id="menu-icon">☰</div>
+            <ul id="menu">
+                <li><span class="fa fa-home"></span>&nbsp; <a href="#">Home</a></li>
+                <li><span class="fa fa-child"></span>&nbsp; <a href="#">About Us</a></li>
+                <li><span class="fa fa-wrench"></span>&nbsp; <a href="#">Services</a></li>
+                <li><span class="fa fa-vcard"></span>&nbsp; <a href="#">Portfolio</a></li>
+                <li><span class="fa fa-user-circle-o"></span>&nbsp; <a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="carousel">
+      <div class="slides" id="slides">
+        <div class="slide"><img src="https://place-hold.it/800x400?text=Slide+1" alt="Slide 1"></div>
+        <div class="slide hidden"><img src="https://place-hold.it/800x400?text=Slide+2" alt="Slide 2"></div>
+        <div class="slide hidden"><img src="https://place-hold.it/800x400?text=Slide+3" alt="Slide 3"></div>
+      </div>
+      <button class="prev" id="prev">❮</button>
+      <button class="next" id="next">❯</button>
+      <div class="indicators" id="indicators">
+        <span class="indicator" data-slide="0"></span>
+        <span class="indicator" data-slide="1"></span>
+        <span class="indicator" data-slide="2"></span>
+      </div>
+    </section>
+
+    <section class="images large-only">
+      <img src="https://place-hold.it/400x400" alt="Large Image 1">
+      <img src="https://place-hold.it/400x400" alt="Large Image 2">
+      <img src="https://place-hold.it/400x400" alt="Large Image 3">
+    </section>
+
+    <section class="images medium-only">
+      <img src="https://place-hold.it/400x300" alt="Medium Image 1">
+      <img src="https://place-hold.it/400x300" alt="Medium Image 2">
+      <img src="https://place-hold.it/400x300" alt="Medium Image 3">
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
